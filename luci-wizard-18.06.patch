@@ -1,8 +1,23 @@
+ diff --git a/modules/luci-base/luasrc/view/cbi/footer.htm b/modules/luci-base/luasrc/view/cbi/footer.htm
+old mode 100644
+new mode 100755
+index ed63220..e402b65
+--- a/modules/luci-base/luasrc/view/cbi/footer.htm
++++ b/modules/luci-base/luasrc/view/cbi/footer.htm
+@@ -1,16 +1,18 @@
+ <%
+ 	local display_back  = (redirect and not flow.hidebackbtn)
+ 	local display_skip  = (flow.skip)
++	local display_last	= (flow.last)	
++	local display_next	= (flow.next)	
+ 	local display_apply = (not autoapply and not flow.hideapplybtn)
+ 	local display_save  = (not flow.hidesavebtn)
  	local display_reset = (not flow.hideresetbtn)
  
  	if pageaction and
 -	   (display_back or display_skip or display_apply or display_save or display_reset)
 +	   (display_back or display_skip or display_last or display_next or display_apply or display_save or display_reset)
+
  	then
  		%><div class="cbi-page-actions"><%
  
