@@ -1,10 +1,10 @@
- diff --git a/modules/luci-base/luasrc/view/cbi/footer.htm b/modules/luci-base/luasrc/view/cbi/footer.htm
+diff --git a/modules/luci-base/luasrc/view/cbi/footer.htm b/modules/luci-base/luasrc/view/cbi/footer.htm
 old mode 100644
 new mode 100755
-index ed63220..e402b65
+index ed63220..5e46555
 --- a/modules/luci-base/luasrc/view/cbi/footer.htm
 +++ b/modules/luci-base/luasrc/view/cbi/footer.htm
-@@ -1,16 +1,18 @@
+@@ -1,12 +1,14 @@
  <%
  	local display_back  = (redirect and not flow.hidebackbtn)
  	local display_skip  = (flow.skip)
@@ -17,14 +17,8 @@ index ed63220..e402b65
  	if pageaction and
 -	   (display_back or display_skip or display_apply or display_save or display_reset)
 +	   (display_back or display_skip or display_last or display_next or display_apply or display_save or display_reset)
-
  	then
  		%><div class="cbi-page-actions"><%
- 
--		if display_back then
-+		if display_back then 
- 			%><input class="cbi-button cbi-button-link" type="button" value="<%:Back to Overview%>" onclick="location.href='<%=pcdata(redirect)%>'" /> <%
- 		end
  
 @@ -18,6 +20,14 @@
  			%><input class="cbi-button cbi-button-skip" type="button" value="<%:Skip%>" onclick="cbi_submit(this, 'cbi.skip')" /> <%
@@ -41,6 +35,11 @@ index ed63220..e402b65
  		if display_apply then
  			%><input class="cbi-button cbi-button-apply" type="button" value="<%:Save & Apply%>" onclick="cbi_submit(this, 'cbi.apply')" /> <%
  		end
+@@ -39,3 +49,4 @@
+ <script type="text/javascript">cbi_init();</script>
+ 
+ <%+footer%>
++
 diff --git a/themes/luci-theme-material/htdocs/luci-static/material/cascade.css b/themes/luci-theme-material/htdocs/luci-static/material/cascade.css
 index 4875c33..4fc85ed 100644
 --- a/themes/luci-theme-material/htdocs/luci-static/material/cascade.css
