@@ -1,18 +1,22 @@
 diff --git a/modules/luci-base/luasrc/view/cbi/footer.htm b/modules/luci-base/luasrc/view/cbi/footer.htm
 old mode 100644
 new mode 100755
-index ed63220..5e46555
+index ed63220..bff5de9
 --- a/modules/luci-base/luasrc/view/cbi/footer.htm
 +++ b/modules/luci-base/luasrc/view/cbi/footer.htm
-@@ -1,12 +1,14 @@
+@@ -1,12 +1,15 @@
  <%
  	local display_back  = (redirect and not flow.hidebackbtn)
  	local display_skip  = (flow.skip)
+-	local display_apply = (not autoapply and not flow.hideapplybtn)
+-	local display_save  = (not flow.hidesavebtn)
+-	local display_reset = (not flow.hideresetbtn)
 +	local display_last	= (flow.last)	
-+	local display_next	= (flow.next)	
- 	local display_apply = (not autoapply and not flow.hideapplybtn)
- 	local display_save  = (not flow.hidesavebtn)
- 	local display_reset = (not flow.hideresetbtn)
++	local display_next	= (flow.next)
++	local display_finish	= (flow.finish)	
++	local display_apply = (not autoapply and not flow.hideapplybtn and not flow.last and not flow.next)
++	local display_save  = (not flow.hidesavebtn  and not flow.last  and not flow.next)
++	local display_reset = (not flow.hideresetbtn and not flow.last  and not flow.next)
  
  	if pageaction and
 -	   (display_back or display_skip or display_apply or display_save or display_reset)
@@ -20,7 +24,7 @@ index ed63220..5e46555
  	then
  		%><div class="cbi-page-actions"><%
  
-@@ -18,6 +20,14 @@
+@@ -18,6 +21,18 @@
  			%><input class="cbi-button cbi-button-skip" type="button" value="<%:Skip%>" onclick="cbi_submit(this, 'cbi.skip')" /> <%
  		end
  
@@ -31,11 +35,15 @@ index ed63220..5e46555
 +		if display_next then
 +			%><input class="cbi-button cbi-button-apply" type="submit" value="<%:Next%>" /> <%
 +		end
++
++		if display_finish then
++			%><input class="cbi-button cbi-button-apply" type="submit" value="<%:finish%>"  onclick="cbi_submit(this, 'cbi.apply')" /> <%
++		end
 +		
  		if display_apply then
  			%><input class="cbi-button cbi-button-apply" type="button" value="<%:Save & Apply%>" onclick="cbi_submit(this, 'cbi.apply')" /> <%
  		end
-@@ -39,3 +49,4 @@
+@@ -39,3 +54,4 @@
  <script type="text/javascript">cbi_init();</script>
  
  <%+footer%>
