@@ -5,7 +5,7 @@
 ``` shell
 cd luci
 
-cp /path-to-project ./ #copy root directory to luci directory.
+cp -rf /path-to-project ./ #copy root directory to luci directory.
 
 patch -p1 < lcui-wizard-18.06.patch #for openwrt-18.06
 
@@ -14,7 +14,7 @@ cd ..
 make package/symlinks-install
 
 ```
-Please refrence to [openWrt](https://github.com/openwrt/openwrt)
+Please reference to [openWrt](https://github.com/openwrt/openwrt) for build firmware.
 
 ### Photoshot
 
